@@ -1,0 +1,71 @@
+model_params:
+  # ------------------------------
+  # Model Architecture
+  # ------------------------------
+  name: 'VQVAE'                     # model name
+  in_channels: 3
+  embedding_dim: 64                 # for codebook
+  num_embeddings: 64
+  hidden_dims: [128, 256]           # encoder/decoder channels
+  img_size: 64
+  vq_flag: True
+  # ------------------------------
+  # VQ-VAE Parameters
+  # ------------------------------
+  vq_parameters:
+    
+    beta: 0.25                      # commitment loss weight
+    alpha: 1                        # embedding loss weight
+    q_flag: False                    # use new method to update q or not
+
+    soft_sample_flag: False         # use soft distance to get q or not
+
+    mem_flag: True                  # use memory like method to get combined q or not
+    
+    # random explore codebook or not
+    random_flag: False
+    random_prob: 0.0                # initial random replacement probability
+    random_decay_method: "constant" # constant | linear | exp | cosine | step | inverse | poly | sigmoid | cyclic
+    decay_kwargs:
+      # --- Exponential decay ---
+      decay_rate: 0.90            # for exp
+      # --- Stepwise decay ---
+      decay_factor: 0.5           # for step
+      step_size: 5               # for step
+      # --- Polynomial / Inverse decay ---
+      k: 10.0                      # for poly or inverse
+      # --- Sigmoid decay ---
+      sharpness: 0.5              # for sigmoid
+      center: 5                 # for sigmoid (epoch where p ~ p0/2)
+      # --- Cyclic decay ---
+      num_cycles: 1               # for cyclic
+
+    
+data_params:
+  # data_path: "/isilon/datalake/gurcan_rsch/scratch/otoscope/Hao/compare_frame_selection/data/Auto_selected_new_all"           # total = 160 imgs
+  data_path: "/isilon/datalake/gurcan_rsch/original/cialab/CelebA_HQ_resized/celeba_hq_256" 
+
+  train_batch_size: 16
+  val_batch_size:  16
+  patch_size: 64
+  num_workers: 0
+
+
+exp_params:
+  LR: 0.0005                             # adjust learning rate
+  weight_decay: 0.0
+  scheduler_gamma: 0.995
+  kld_weight: 0.00025
+  manual_seed: 1265
+
+trainer_params:
+  accelerator: gpu
+  devices: 1 
+  max_epochs: 300                      # adjust epochs
+  gradient_clip_val: 1.0
+
+logging_params:
+  save_dir: "logs/"
+  name: 'VQVAE_FACE'
+
+# Note: 
