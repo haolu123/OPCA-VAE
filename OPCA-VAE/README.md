@@ -18,8 +18,11 @@ Our current experiment shows that OPCA(online PCA)-VAE  can do the same work as 
 - Pytorch Lightning >= 0.6.0 (tested up to 2.5.2)
 - All experiments were run on a CUDA-enabled GPU
 
+### dataset
+Currently, we used https://www.kaggle.com/datasets/badasstechie/celebahq-resized-256x256.
+
 ### Usage
-All usable model codes are saved at ./models/pca_vae_v2.py
+All usable model codes are saved at .OPCA-VAE/models/pca_vae_v2.py
 ./experiment.py contains the PyTorch Lightning train, valid, test processes.
 do
 python run.py -c configs_rebuild/pca_vae.yaml 
