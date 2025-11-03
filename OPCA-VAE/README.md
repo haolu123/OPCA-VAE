@@ -4,10 +4,10 @@
 
 ##### This Repository is adapted from https://github.com/AntixK/PyTorch-VAE. Appreciate it!
 
-**Update 9/22/2025:** 
+**Update 11/02/2025:** 
 - Adjusted PyTorch Lightning import commands to support 2.5.2 version
 - Adjusted Parrallel Online PCA for pathed laten space (when keep_shape = True)
-
+- Developed pca_poke_tools to show the features in each latent feature dimension. (only for single vector cases.)
 ### Description
 This work is trying to use online PCA to replace VQ in VQ-VAE. (VQ is a online k-means algorithm) 
 Our current experiment shows that OPCA(online PCA)-VAE  can do the same work as VQ-VAE on reconstruction cases. However, we are not quite sure if it also works are generation and classification task. Also I'm thinking maybe we can test if the latent represtation of OPCA-VAE has the same "interpret ability" as beta-VAE. These need experiments to test.

@@ -1,0 +1,48 @@
+model_params:
+  # ------------------------------
+  # Model Architecture
+  # ------------------------------
+  name: 'PCAVAE'                     # model name
+  in_channels: 3
+  embedding_dim: 256                 # for codebook
+  num_embeddings: 256
+  hidden_dims: [32, 64, 128, 256]          # encoder/decoder channels
+  img_size: 64
+  quantizerConfig: 
+    target: models.pca_vae_v2.PCA
+    params:
+      num_embeddings: ${model_params.num_embeddings}
+      embedding_dim: ${model_params.embedding_dim}
+      method: qr
+      keep_shape: False
+  
+
+    
+data_params:
+  # data_path: "/isilon/datalake/gurcan_rsch/scratch/otoscope/Hao/compare_frame_selection/data/Auto_selected_new_all"           # total = 160 imgs
+  data_path: "/isilon/datalake/gurcan_rsch/original/cialab/CelebA_HQ_resized/celeba_hq_256" 
+
+  train_batch_size: 16
+  val_batch_size:  16
+  patch_size: 64
+  num_workers: 0
+
+
+exp_params:
+  LR: 0.0005                             # adjust learning rate
+  weight_decay: 0.0
+  scheduler_gamma: 0.995
+  kld_weight: 0.00025
+  manual_seed: 1265
+
+trainer_params:
+  accelerator: gpu
+  devices: 1 
+  max_epochs: 300                      # adjust epochs
+  gradient_clip_val: 1.0
+
+logging_params:
+  save_dir: "logs_pca_single_vector/"
+  name: 'VQVAE_FACE_single_vector_100p'
+
+# Note: 
