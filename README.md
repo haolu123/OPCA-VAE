@@ -92,13 +92,13 @@ Dimensions are **naturally ordered by explained variance**.
 
 PCA layer forward/backward:
 
-\[
+$$
 Y = C^T(h - \mu), \quad \hat{h} = CY + \mu
-\]
+$$
 
-- \(C\): orthogonal basis learned via **Oja’s rule** (online PCA)  
+- `C`: orthogonal basis learned via **Oja’s rule** (online PCA)  
 - Latents are **orthogonal and variance-sorted**  
-- Entire pipeline is **fully differentiable**  
+- Entire pipeline is **fully differentiable**
 
 No codebooks. No STE. Pure gradients.
 
