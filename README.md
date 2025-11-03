@@ -10,8 +10,8 @@
 
 ---
 
-<p align="center">
-<img src="./figures/figures/PCA_vae_scheme.png" width="80%">
+<p align="center" style="background:white;padding:10px;">
+  <img src="./figures/PCA_vae_scheme.png" width="80%">
 </p>
 
 **PCA-VAE replaces VQ with an online PCA layer**, learned via **Oja’s rule**, inside a VAE bottleneck.  
